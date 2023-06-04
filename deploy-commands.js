@@ -1,7 +1,7 @@
 // register and update slash commands
 
 const { REST, Routes } = require('discord.js');
-const { token, clientID, guildID, } = require('./config.json');
+const { clientID, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -33,7 +33,7 @@ const rest = new REST().setToken(token);
         console.log('Started refreshing application slash commands.');
 
         const data = await rest.put(
-            Routes.applicationGuildCommands(clientId, guildID),
+            Routes.applicationCommands(clientID),
             {body: commands},
         );
 
