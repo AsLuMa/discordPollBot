@@ -27,6 +27,13 @@ for (const folder of commandFolders) {
 
 const rest = new REST().setToken(token);
 
+// // delete global command
+// rest.delete(Routes.applicationCommand(clientID, ''))
+//     .then(() => console.log('Deleted global command'))
+//     .catch(console.error);
+
+
+
 //* syntax: docs
 (async () => {
     try {
