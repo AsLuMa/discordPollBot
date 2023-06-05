@@ -3,13 +3,12 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('makepoll')
-        .setDescription('Make a new poll of available dates for gaming')
+        .setDescription('Make a new poll of available dates for gaming - the one that works')
         .addStringOption(option =>
-            option.setName('input')
-                .setDescription('input')),
+            option.setName('game')
+                .setDescription('Name of game')),
     async execute(interaction) {
-        const input = interaction.options.getString('input')
-       // await interaction.reply({ content: 'Nice placeholder text', ephemeral: true })
-        await interaction.reply(`Here's hoping this outputs what you typed: ${input}`);
+        const game = interaction.options.getString('game')
+        await interaction.reply(`Here's hoping this outputs what you typed: ${game}`);
     },
 };
