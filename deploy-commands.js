@@ -1,7 +1,7 @@
 // register and update slash commands
-
-const { REST, Routes } = require('discord.js');
-const { clientID, token } = require('./config.json');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9')
+const { clientID, token, guildID } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -30,14 +30,14 @@ const rest = new REST().setToken(token);
 //* syntax: docs
 (async () => {
     try {
-        console.log('Started refreshing application slash commands.');
+        console.log(`Started refreshing application slash commands.`);
 
         const data = await rest.put(
-            Routes.applicationCommands(clientID),
+            Routes.applicationGuildCommands(clientID, guildID),
             {body: commands},
         );
 
-        console.log('Successfully reloaded slash commands.');
+        console.log(`Successfully reloaded slash commands.`);
     } catch (error) {
         console.error(error);
     }

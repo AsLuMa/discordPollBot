@@ -1,5 +1,5 @@
 // imports
-const { Client, Events, GatewayIntentBits, Collection} = require('discord.js');
+const { Client, GatewayIntentBits, Collection} = require('discord.js');
 const { token } = require('./config.json');
 
 const fs = require('node:fs');
@@ -29,32 +29,18 @@ for (const folder of commandFolders) {
 
 }
 
-client.once(Events.ClientReady, () => {
-    console.log('Ready');
-});
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-//* interaction: check docs
-client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-
-    const command = client.commands.get(interaction.commandName);
-
-    if(!command) {
-        console.error('No command matching ${interaction.commandName} was found.');
-        return;
+for (const file of eventFiles) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
     }
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({content: "error", ephemeral: true});
-        } else {
-            await interaction.reply( {content: "error", ephemeral: true});
-        }
-    }
-
-});
+}
 
 void client.login(token);
 
