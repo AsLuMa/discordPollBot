@@ -33,7 +33,6 @@ const rest = new REST().setToken(token);
 //     .catch(console.error);
 
 
-
 //* syntax: docs
 (async () => {
     try {
