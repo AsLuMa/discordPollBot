@@ -7,10 +7,11 @@ module.exports = {
 
         const command = interaction.client.commands.get(interaction.commandName);
 
-        if(!command) {
-            console.error(`No command matching ${interaction.commandName} was found.`);
-            return;
-        }
+        // this might interfere with a button handler?
+        // if(!command) {
+        //     console.error(`No command matching ${interaction.commandName} was found.`);
+        //     return;
+        // }
 
         try {
             await command.execute(interaction);
@@ -18,6 +19,12 @@ module.exports = {
             console.error(`Error executing command`);
             console.error(error);
         }
+
+        // button handler goes here
+
+
+
+
     },
 };
 
