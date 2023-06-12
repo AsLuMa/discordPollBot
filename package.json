@@ -1,5 +1,19 @@
 {
+  "name": "discordpollbot",
+  "description": "",
+  "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AsLuMa",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AsLuMa/discordPollBot.git"
+  },
+  "devDependencies": {},
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
     "discord-api-types": "^0.37.43",

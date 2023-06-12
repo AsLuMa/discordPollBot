@@ -1,10 +1,17 @@
-const { Events } = require('discord.js');
+import { Client, Events } from 'discord.js';
 
-module.exports = {
+export const readyEvent = {
+    /**
+     * Interaction name
+     */
     name: Events.ClientReady,
     once: true,
-    execute(client) {
-        console.log(`Logged in as ${client.user.tag}`);
 
-    },
-};
+    /**
+     * Execution
+     * @param {Client} client
+     */
+    execute: client => {
+        console.log(`Logged in as ${client.user.tag}`);
+    }
+}

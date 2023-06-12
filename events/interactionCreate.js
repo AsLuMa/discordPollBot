@@ -1,9 +1,19 @@
-const { Events } = require('discord.js');
+import { Events } from 'discord.js';
 
-module.exports = {
+export const interactionCreateEvent = {
+    /**
+     * Interaction name
+     */
     name: Events.InteractionCreate,
-    async execute(interaction) {
-        if (!interaction.isChatInputCommand()) return;
+
+    /**
+     * Execution
+     * @param {*} interaction
+     * @returns
+     */
+    execute: async interaction => {
+        if (!interaction.isChatInputCommand())
+            return;
 
         const command = interaction.client.commands.get(interaction.commandName);
 
@@ -12,7 +22,6 @@ module.exports = {
         //     console.error(`No command matching ${interaction.commandName} was found.`);
         //     return;
         // }
-
         try {
             await command.execute(interaction);
         } catch (error) {
@@ -21,13 +30,5 @@ module.exports = {
         }
 
         // button handler goes here
-
-
-
-
-    },
-};
-
-
-
-
+    }
+}
