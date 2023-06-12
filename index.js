@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 /**
  * Local imports
  */
-import commands from './commands/index.js';
+import commands, { deployCommands } from './commands/index.js';
 import events from './events/index.js';
 
 /**
@@ -27,14 +27,16 @@ const client = new Client({
  * Register commands
  */
 client.commands = new Collection(); // TODO: move to client init?
-
 for (const cmd of commands) {
     if ('data' in cmd && 'execute' in cmd) {
         client.commands.set(cmd.data.name, cmd);
+        // deployCommand(cmd);
     } else {
         console.log('Warning: The command at ${filePath} is missing "data" or "execute" property.');
     }
 }
+// Refresh slash commands
+deployCommands(...client.commands.values());
 
 /**
  * Register event handlers
@@ -47,4 +49,7 @@ for (const e of events) {
     }
 }
 
+/**
+ * Log in! Yay!
+ */
 void client.login(token);
