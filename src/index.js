@@ -2,18 +2,18 @@
  * Package imports
  */
 import { Client, GatewayIntentBits, Collection } from 'discord.js';
-import dotenv from 'dotenv';
+import { config as configureEnvironment } from 'dotenv';
 
 /**
  * Local imports
  */
-import commands, { deployCommands } from './commands/index.js';
-import events from './events/index.js';
+import commands, { deployCommands } from './commands';
+import events from './events';
 
 /**
  * Configure environment and extract environment variables
  */
-dotenv.config();
+configureEnvironment();
 const { token } = process.env;
 
 /**

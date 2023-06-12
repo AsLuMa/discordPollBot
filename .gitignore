@@ -1,6 +1,9 @@
 # Dependency directories
 node_modules/
 
+# Output directories
+dist/
+
 # dotenv environment variables file
 .env
 config.json
