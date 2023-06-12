@@ -25,6 +25,7 @@ const client = new Client({
 
 /**
  * Register commands
+ * TODO: Handle all commands related startup logic elsewhere?
  */
 client.commands = new Collection(); // TODO: move to client init?
 for (const cmd of commands) {
@@ -40,6 +41,7 @@ deployCommands(...client.commands.values());
 
 /**
  * Register event handlers
+ * TODO: Handle all events related startup logic elsewhere?
  */
 for (const e of events) {
     if (e.once) {
