@@ -68,12 +68,11 @@ module.exports = {
 
         console.log(fields)
 
-        await interaction.reply({ content: `Eg vil spille ${game}`, ephemeral: true } )
+        // await interaction.reply({ content: `You know the drill. Trykk på den relevante emojien for å stemme.`, ephemeral: true } )
+        await interaction.reply({ content: `You know the drill. Trykk på den relevante emojien for å stemme.` } )
 
         const pollWindow = new EmbedBuilder()
             .setDescription(`Når kan du spille ${game}?`)
-            // .setURL('https://discord.js.org')
-            .setDescription(`Når passer det for deg å spille ${game}?`)
             .addFields(fields)
             .setFooter({ text: 'Gå ut å ta på gress innimellom.'});
 
