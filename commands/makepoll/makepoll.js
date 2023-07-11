@@ -39,14 +39,14 @@ module.exports = {
 
         // const emojis = [':rice_scene:', ':tada:', ':game_die:', ':baby_chick:'];
 
-        const emojis = [];
+        const optionInfo = [];
 
-        emojis.push({emojiName: ':rice_scene:', unicode: "\uD83C\uDF91"})
-        emojis.push({emojiName: ':tada:', unicode: "\uD83C\uDF89"})
-        emojis.push({emojiName: ':baby_chick:', unicode: "\uD83D\uDC24"})
-        emojis.push({emojiName: ':game_die:', unicode: "\uD83C\uDFB2"})
+        optionInfo.push({ emojiName: ':rice_scene:', emojiUnicode: "\uD83C\uDF91", date: dato1 })
+        optionInfo.push({ emojiName: ':tada:', emojiUnicode: "\uD83C\uDF89", date: dato2 })
+        optionInfo.push({ emojiName: ':baby_chick:', emojiUnicode: "\uD83D\uDC24", date: dato3 })
+        optionInfo.push({ emojiName: ':game_die:', emojiUnicode: "\uD83C\uDFB2", date: dato4 })
 
-        console.log(emojis);
+        console.log(optionInfo);
 
 
         const fields = [];
@@ -55,7 +55,7 @@ module.exports = {
                 let field;
                 field = {
                     name: dates[i],
-                    value: emojis[i].emojiName,
+                    value: optionInfo[i].emojiName,
                     inline: false
                 };
                 fields.push(field);
@@ -94,7 +94,6 @@ module.exports = {
             if(dato4 !== null) {
                 embedMessage.react("🎲");
             }
-
         })
 
         //standard/default embed
