@@ -7,11 +7,11 @@ module.exports = {
 
         const command = interaction.client.commands.get(interaction.commandName);
 
-        // this might interfere with a button handler?
-        // if(!command) {
-        //     console.error(`No command matching ${interaction.commandName} was found.`);
-        //     return;
-        // }
+        // this will interfere with a button handler
+        if(!command) {
+            console.error(`No command matching ${interaction.commandName} was found.`);
+            return;
+        }
 
         try {
             await command.execute(interaction);
