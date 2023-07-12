@@ -30,11 +30,16 @@ module.exports = {
         const opt3 = { emojiName: ':baby_chick:', emojiString: "🐤",emojiUnicode: "\uD83D\uDC24", date: interaction.options.getString('dato3') };
         const opt4 = { emojiName: ':game_die:', emojiString: "🎲",emojiUnicode: "\uD83C\uDFB2", date: interaction.options.getString('dato4') };
 
-        const optionInfo = [opt1, opt2, opt3, opt4];
+        const userInputAndEmojiInfo = [opt1, opt2, opt3, opt4];
+
+        function filterNullDates(options) {
+            return options.date;
+        }
+
+        const optionInfo = userInputAndEmojiInfo.filter(filterNullDates);
 
         const fields = [];
         for (let opt of optionInfo) {
-            if (opt.date !== null) {
 
                 const field = {
                     name: opt.date,
@@ -43,7 +48,6 @@ module.exports = {
                 };
 
                 fields.push(field);
-            }
         }
 
         await interaction.reply({ content: `You know the drill. Trykk på den relevante emojien for å stemme.` } )
@@ -57,9 +61,7 @@ module.exports = {
         //embed that autoreplies with emoji for person who makes embed
         interaction.channel.send( { embeds: [pollWindow], ephemeral:true } ).then(embedMessage => {
             for (let opt of optionInfo) {
-                if (opt.date !== null) {
-                    embedMessage.react(opt.emojiString);
-                }
+                embedMessage.react(opt.emojiString);
             }
         })
 
