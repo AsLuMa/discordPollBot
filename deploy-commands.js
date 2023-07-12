@@ -1,9 +1,9 @@
 // register and update slash commands
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9')
-const { clientID, token, guildID } = require('./config.json');
-const fs = require('node:fs');
-const path = require('node:path');
+import { REST } from '@discordjs/rest';
+import { Routes } from 'discord-api-types/v9';
+import { clientID, token, guildID } from './config.json';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');

@@ -1,7 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { ButtonBuilder, ButtonStyle, ActionRowBuilder } from 'discord.js';
 
-module.exports = {
+export const fancyPollCommand = {
     data: new SlashCommandBuilder()
         .setName('fancypoll')
         .setDescription('Fancy poll with buttons ' + "\u2728"),

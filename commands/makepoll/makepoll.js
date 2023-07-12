@@ -1,6 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 
-module.exports = {
+export const makepollCommand  = {
     data: new SlashCommandBuilder()
         .setName('makepoll')
         .setDescription('Make a new poll of available dates for gaming')

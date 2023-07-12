@@ -1,6 +1,6 @@
-const {SlashCommandBuilder} = require('discord.js');
+import {SlashCommandBuilder} from 'discord.js';
 
-module.exports = {
+export const editpollCommand  = {
     data: new SlashCommandBuilder()
         .setName('editpoll')
         .setDescription('Didya goof when you made your poll? Have no fear, edit functionality is here!'),
