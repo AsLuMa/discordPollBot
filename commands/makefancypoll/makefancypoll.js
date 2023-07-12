@@ -1,5 +1,6 @@
+// button related imports
+// const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 
-// TODO abandonded button project
 // function makeButton(number) {
 //     button = new ButtonBuilder()
 //         .setCustomId(`Option ${number+1}`)
@@ -21,3 +22,6 @@
 //         button = buttons[i]
 //         row.addComponents(button);
 //     }
+
+// embed with buttons
+// interaction.channel.send( { embeds: [pollWindow], ephemeral:true, components: [row]} )
