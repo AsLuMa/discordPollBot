@@ -8,7 +8,6 @@ import dotenv from 'dotenv';
 /**
  * Local imports
  */
-// TODO MAKE THESE FILES
 import commands, { deployCommands } from './commands/index.js';
 import events from './events/index.js';
 

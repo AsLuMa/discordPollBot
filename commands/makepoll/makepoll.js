@@ -42,8 +42,8 @@ export const makepollCommand  = {
         for (let opt of optionInfo) {
 
                 const field = {
-                    name: opt.date,
-                    value: opt.emojiName,
+                    name: ' ',
+                    value: opt.emojiName + '\t' + opt.date,
                     inline: false
                 };
 
