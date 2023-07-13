@@ -4,7 +4,6 @@
 import { Client, GatewayIntentBits, Collection } from 'discord.js';
 import dotenv from 'dotenv';
 
-
 /**
  * Local imports
  */
@@ -35,7 +34,7 @@ for (const cmd of commands) {
     }
 }
 // Refresh slash commands
-deployCommands(...client.commands.values());
+void deployCommands(...client.commands.values());
 
 /**
  * Register event handlers

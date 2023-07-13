@@ -1,7 +1,8 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder as MessageEmbed, Events} from 'discord.js';
-import { makeButton } from "../commands/makefancypoll/makefancypoll.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder as MessageEmbed, Events } from 'discord.js';
+import { makeButton } from "../utils/button.util.js";
+import {onMakePollButtonClick} from "../commands/makefancypoll/onMakePollButtonClick.js";
 
-const editButton = makeButton('edit', 'Edit poll', ButtonStyle.Danger);
+
 const doneEditingButton = makeButton('doneEditing', 'Done atoning for my sins', ButtonStyle.Primary);
 
 
@@ -29,20 +30,7 @@ export const interactionCreateEvent = {
             if (interaction.customId === 'makePoll') {
                 console.log("clicked makepollbutton");
 
-                const pollWindow = new MessageEmbed()
-                    .setDescription(`Todo:
-                - fix the click listeners (can we move the logic in interactionCreate to makefancypoll.js?) \n
-                - this embed window should starts a loop where user is asked to input dates \n
-                - then the embed with the actual poll should be made and sent/rendered \n
-                - fix \'interaction failed\'-message`);
-
-                const embedEditRow = new ActionRowBuilder();
-                embedEditRow.addComponents(editButton);
-
-
-                interaction.channel.send( { embeds: [pollWindow], ephemeral:true } );
-                interaction.channel.send( { components: [embedEditRow], ephemeral:true } );
-
+                onMakePollButtonClick(interaction);
 
             }
 
