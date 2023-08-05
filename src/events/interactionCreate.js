@@ -67,7 +67,3 @@ export const interactionCreateEvent = {
 
     },
 };
-
-
-
-
