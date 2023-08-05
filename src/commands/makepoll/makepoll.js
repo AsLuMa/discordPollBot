@@ -1,77 +1,70 @@
-import { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 
-export const makepollCommand = {
-    /**
-     * Builder
-     */
+export const makepollCommand  = {
     data: new SlashCommandBuilder()
-        // todo: avoid hardcoding of options = making this input-based means being able to deal with null values
         .setName('makepoll')
         .setDescription('Make a new poll of available dates for gaming')
-        .addStringOption(option1 => option1.setName('game')
-            .setDescription('Name of game'))
-        .addStringOption(option2 => option2.setName('dato1')
-            .setDescription('Dato 1'))
-        .addStringOption(option2 => option2.setName('dato2')
-            .setDescription('Dato 2'))
-        .addStringOption(option2 => option2.setName('dato3')
-            .setDescription('Dato 3'))
-        .addStringOption(option => option.setName('dato4')
-            .setDescription('Dato 4')),
+        .addStringOption(option1 =>
+            option1.setName('game')
+                .setDescription('Name of game'))
+        .addStringOption(option2 =>
+            option2.setName('dato1')
+                .setDescription('Dato 1'))
+        .addStringOption(option2 =>
+            option2.setName('dato2')
+                .setDescription('Dato 2'))
+        .addStringOption(option2 =>
+            option2.setName('dato3')
+                .setDescription('Dato 3'))
+        .addStringOption(option =>
+            option.setName('dato4')
+                .setDescription('Dato 4')),
 
-    /**
-     * Execution
-     * @param {*} interaction
-     */
-    execute: async interaction => {
-        const game = interaction.options.getString('game');
-        let dato1 = interaction.options.getString('dato1');
-        let dato2 = interaction.options.getString('dato2');
-        let dato3 = interaction.options.getString('dato3');
-        let dato4 = interaction.options.getString('dato4');
+    async execute(interaction) {
 
-        // skriv om dette sånn at du slepper å hardkode sjekk på alle datoar
-        if (dato4 === null) {
-            dato4 = 'Tomt her!';
+        let game = interaction.options.getString('game')
+        game == null ? game = "spill" : game;
+
+        const opt1 = { emojiName: ':rice_scene:', emojiString: "🎑", emojiUnicode: "\uD83C\uDF91", date: interaction.options.getString('dato1') };
+        const opt2 = { emojiName: ':tada:', emojiString: "🎉", emojiUnicode: "\uD83C\uDF89", date: interaction.options.getString('dato2') };
+        const opt3 = { emojiName: ':baby_chick:', emojiString: "🐤",emojiUnicode: "\uD83D\uDC24", date: interaction.options.getString('dato3') };
+        const opt4 = { emojiName: ':game_die:', emojiString: "🎲",emojiUnicode: "\uD83C\uDFB2", date: interaction.options.getString('dato4') };
+
+        const userInputAndEmojiInfo = [opt1, opt2, opt3, opt4];
+
+        function filterNullDates(options) {
+            return options.date;
         }
 
-        // let dates = new Array(dato1, dato2, dato3, dato4)
+        const optionInfo = userInputAndEmojiInfo.filter(filterNullDates);
 
-        let buttons = [];
-        //todo don't hardcode this
-        for (let i = 0; i < 4; i++) {
-            const button = makeButton(i);
-            buttons.push(button);
-        }
-        // console.log(`buttons ${buttons}`)
-        const row = new ActionRowBuilder();
-        for (let i = 0; i < buttons.length; i++) {
-            const button = buttons[i];
-            row.addComponents(button);
-        }
-        // console.log(row)
-        await interaction.reply({ content: `Eg vil spille ${game}`, ephemeral: true });
+        const fields = [];
+        for (let opt of optionInfo) {
 
-        // await interaction.followUp({ content: `Her kjem ein liten (foreløpig) automatisk oppfølginsrespons: ${dato1} `, ephemeral: true })
-        // input available dates
-        // todo handle null input in fields
+                const field = {
+                    name: ' ',
+                    value: opt.emojiName + '\t' + opt.date,
+                    inline: false
+                };
+
+                fields.push(field);
+        }
+
+        await interaction.reply({ content: `You know the drill. Trykk på den relevante emojien for å stemme.` } )
+
         const pollWindow = new EmbedBuilder()
             .setDescription(`Når kan du spille ${game}?`)
-            // .setURL('https://discord.js.org')
-            .setDescription(`Når passer det for deg å spille ${game}?`)
-            .addFields(
-                { name: 'Alternativ 1', value: `${dato1}` },
-                { name: 'Alternativ 2', value: `${dato2}` },
-                { name: 'Alternativ 3', value: `${dato3}` },
-                { name: 'Alternativ 4', value: `${dato4}` }
-            )
-            .setFooter({ text: 'Gå ut å ta på gress innimellom.' });
+            .addFields(fields)
+            .setFooter({ text: 'Gå ut å ta på gress innimellom.'});
 
-        interaction.channel.send({ embeds: [pollWindow], ephemeral: true, components: [row] });
-    }
-}
 
-const makeButton = number => new ButtonBuilder()
-    .setCustomId(`Option ${number + 1}`)
-    .setLabel(`Alternativ ${number + 1}`)
-    .setStyle(ButtonStyle.Primary);
+        //embed that autoreplies with emoji for person who makes embed
+        interaction.channel.send( { embeds: [pollWindow], ephemeral:true } ).then(embedMessage => {
+            for (let opt of optionInfo) {
+                embedMessage.react(opt.emojiString);
+            }
+        })
+
+    },
+
+};

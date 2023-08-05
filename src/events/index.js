@@ -3,5 +3,5 @@ import { readyEvent } from './ready.js';
 
 export { interactionCreateEvent, readyEvent };
 export default [
-  interactionCreateEvent, readyEvent
+    interactionCreateEvent, readyEvent
 ];

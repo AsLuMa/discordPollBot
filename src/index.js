@@ -10,11 +10,11 @@ import dotenv from 'dotenv';
 import commands, { deployCommands } from './commands/index.js';
 import events from './events/index.js';
 
-/**
- * Configure environment and extract environment variables
- */
+// /**
+//  * Configure environment and extract environment variables
+//  */
 dotenv.config();
-const { token } = process.env;
+// const { token } = process.env;
 
 /**
  * Initialize Discord client
@@ -23,11 +23,8 @@ const client = new Client({
     intents: [GatewayIntentBits.Guilds] // Guilds = servers
 });
 
-/**
- * Register commands
- * TODO: Handle all commands related startup logic elsewhere?
- */
-client.commands = new Collection(); // TODO: move to client init?
+
+client.commands = new Collection();
 for (const cmd of commands) {
     if ('data' in cmd && 'execute' in cmd) {
         client.commands.set(cmd.data.name, cmd);
@@ -37,7 +34,7 @@ for (const cmd of commands) {
     }
 }
 // Refresh slash commands
-deployCommands(...client.commands.values());
+void deployCommands(...client.commands.values());
 
 /**
  * Register event handlers
@@ -51,7 +48,6 @@ for (const e of events) {
     }
 }
 
-/**
- * Log in! Yay!
- */
-void client.login(token);
+void client.login(process.env.token);
+
+
