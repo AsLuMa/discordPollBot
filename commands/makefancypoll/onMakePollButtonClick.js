@@ -11,7 +11,8 @@ export const onMakePollButtonClick = (interaction) => {
     - fix the click listeners (can we move the logic in interactionCreate to makefancypoll.js?) \n
     - this embed window should starts a loop where user is asked to input dates \n
     - then the embed with the actual poll should be made and sent/rendered \n
-    - fix \'interaction failed\'-message`);
+    - fix \'interaction failed\'-message`)
+        .addFields();
 
     const embedEditRow = new ActionRowBuilder();
     embedEditRow.addComponents(editButton);
