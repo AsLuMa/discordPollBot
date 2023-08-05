@@ -41,13 +41,13 @@ export const makepollCommand  = {
         const fields = [];
         for (let opt of optionInfo) {
 
-                const field = {
-                    name: ' ',
-                    value: opt.emojiName + '\t' + opt.date,
-                    inline: false
-                };
+            const field = {
+                name: ' ',
+                value: opt.emojiName + '\t' + opt.date,
+                inline: false
+            };
 
-                fields.push(field);
+            fields.push(field);
         }
 
         await interaction.reply({ content: `You know the drill. Trykk på den relevante emojien for å stemme.` } )

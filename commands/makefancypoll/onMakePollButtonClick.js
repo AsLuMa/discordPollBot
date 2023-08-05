@@ -20,4 +20,3 @@ export const onMakePollButtonClick = (interaction) => {
     interaction.channel.send( { embeds: [pollWindow], ephemeral:true } );
     interaction.channel.send( { components: [embedEditRow], ephemeral:true } );
 }
-
