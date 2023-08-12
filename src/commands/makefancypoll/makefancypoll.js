@@ -7,7 +7,7 @@ import {
   SlashCommandBuilder
 } from 'discord.js';
 import 'node:timers/promises';
-import { makeButton } from "../../utils/button.util.js";
+import { makeButton } from "../../../utils/button.util.js";
 
 export const fancyPollCommand = {
   data: new SlashCommandBuilder()

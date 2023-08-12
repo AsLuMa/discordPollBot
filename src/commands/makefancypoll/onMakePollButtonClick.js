@@ -1,5 +1,5 @@
 import { EmbedBuilder, ActionRowBuilder, ButtonStyle } from 'discord.js';
-import { makeButton } from "../../utils/button.util.js";
+import { makeButton } from "../../../utils/button.util.js";
 
 
 export const onMakePollButtonClick = (interaction) => {

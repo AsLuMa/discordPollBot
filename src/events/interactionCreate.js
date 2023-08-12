@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder as MessageEmbed, Events } from 'discord.js';
-import { makeButton } from "../utils/button.util.js";
+import { makeButton } from "../../utils/button.util.js";
 import {onMakePollButtonClick} from "../commands/makefancypoll/onMakePollButtonClick.js";
 
 
