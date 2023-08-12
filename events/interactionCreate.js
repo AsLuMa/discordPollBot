@@ -46,14 +46,14 @@ export const interactionCreateEvent = {
                 interaction.channel.send({ embeds: [editPlaceholder], ephemeral:true });
                 interaction.channel.send({ components: [doneEditingRow], ephemeral:true });
 
-            }
+                }
 
             if (interaction.customId === 'doneEditing') {
                 console.log("clicked atone button");
                 // interaction.reply({ content: "All done", ephemeral: true });
                 interaction.channel.send("This should return an updated version the embed window with the poll. " +
                     "And an edit button, for further edits. " +
-                    "We also have to deal with the emoji-reactions-somehow. Retain whatever has been voted on. Maybe change text color of the option that was changed.");
+                "We also have to deal with the emoji-reactions-somehow. Retain whatever has been voted on. Maybe change text color of the option that was changed.");
 
             }
 
