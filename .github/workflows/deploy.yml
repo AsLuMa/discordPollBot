@@ -1,4 +1,11 @@
-on: workflow_dispatch
+name: Deploy to Balena fleet
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches: [main]
+  release:
+    types: [created]
 
 jobs:
   balena_deploy:
