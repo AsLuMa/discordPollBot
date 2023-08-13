@@ -18,7 +18,10 @@ export const makepollCommand  = {
                 .setDescription('Dato 3'))
         .addStringOption(option =>
             option.setName('dato4')
-                .setDescription('Dato 4')),
+                .setDescription('Dato 4'))
+        .addStringOption(option =>
+            option.setName('dato5')
+                .setDescription('Dato 5')),
 
     async execute(interaction) {
 
@@ -29,8 +32,11 @@ export const makepollCommand  = {
         const opt2 = { emojiName: ':tada:', emojiString: "🎉", emojiUnicode: "\uD83C\uDF89", date: interaction.options.getString('dato2') };
         const opt3 = { emojiName: ':baby_chick:', emojiString: "🐤",emojiUnicode: "\uD83D\uDC24", date: interaction.options.getString('dato3') };
         const opt4 = { emojiName: ':game_die:', emojiString: "🎲",emojiUnicode: "\uD83C\uDFB2", date: interaction.options.getString('dato4') };
+        const opt5 = { emojiName: ':amphora:', emojiString: "🏺",emojiUnicode: null, date: interaction.options.getString('dato5') };
 
-        const userInputAndEmojiInfo = [opt1, opt2, opt3, opt4];
+        const userInputAndEmojiInfo = [opt1, opt2, opt3, opt4, opt5];
+
+
 
         function filterNullDates(options) {
             return options.date;
@@ -43,7 +49,7 @@ export const makepollCommand  = {
 
                 const field = {
                     name: ' ',
-                    value: opt.emojiName + '\t' + opt.date,
+                    value: opt.emojiName + "\u00A0\u00A0\u00A0" + opt.date,
                     inline: false
                 };
 
