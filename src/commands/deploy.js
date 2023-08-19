@@ -31,13 +31,13 @@ export const deployCommand = async (cmd) => {
  * @returns
  */
 export const deployCommands = async (...commands) => {
-    const { clientID, guildID, token } = process.env;
+    const { clientID, token } = process.env;
     const rest = new REST().setToken(token);
 
     try {
         console.log('Refreshing application slash commands...');
         return await rest.put(
-            Routes.applicationGuildCommands(clientID, guildID),
+            Routes.applicationCommands(clientID),
             {
                 body: commands.map(cmd => cmd.data.toJSON())
             }

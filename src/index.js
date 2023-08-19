@@ -49,5 +49,3 @@ for (const e of events) {
 }
 
 void client.login(process.env.token);
-
-
